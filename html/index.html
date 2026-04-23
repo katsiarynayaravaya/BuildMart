@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuildMart</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="container header__inner">
+
+    <div class="logo">
+      <div class="logo__icon">BM</div>
+      <span class="logo__text">BuildMart</span>
+    </div>
+
+    <nav class="nav">
+      <a href="#">Products</a>
+      <a href="#">Categories</a>
+      <a href="#">Deals</a>
+      <a href="#">About</a>
+    </nav>
+
+    <div class="header__actions">
+      <div class="search-wrapper">
+        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input class="search" type="text" placeholder="Search products...">
+      </div>
+      
+      <div class="cart">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="21" r="1"></circle>
+          <circle cx="19" cy="21" r="1"></circle>
+          <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+        </svg>
+        <span class="cart__count">0</span>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
+<main class="main">
+  <div class="container">
+
+    <div class="page-header">
+      <h1>Building Materials</h1>
+      <p>Premium construction supplies for your projects</p>
+    </div>
+
+    <div class="toolbar">
+      <div class="toolbar__left">
+        <button class="btn btn--outline">Show Filters</button>
+        <span>Showing <b>6</b> products</span>
+      </div>
+
+      <div class="toolbar__right">
+        <label>Sort by:</label>
+        <select>
+          <option>Price ↑</option>
+          <option>Price ↓</option>
+          <option>A-Z</option>
+          <option>Z-A</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filters">
+
+      <div class="filter">
+        <h3>Minimum Rating</h3>
+        <div class="filter__options">
+          <button>3+ Stars</button>
+          <button>4+ Stars</button>
+          <button>5+ Stars</button>
+        </div>
+      </div>
+
+      <div class="filter">
+        <h3>Price Range</h3>
+        <input type="range" min="0" max="400">
+        <div class="price-labels">
+          <span>$0</span>
+          <span>$400</span>
+        </div>
+      </div>
+
+      <button class="btn btn--outline">Clear Filters</button>
+
+    </div>
+
+    <div class="products">
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1673297821205-e0575bbc2ab7" alt="">
+        <h3>Exterior Paint Set</h3>
+        <div class="rating">⭐⭐⭐⭐☆ (3.5)</div>
+        <p class="price">$45.99</p>
+        <p class="category">Paint & Coatings</p>
+        <button class="btn">Add to Cart</button>
+      </div>
+
+
+      
+
+    </div>
+
+  </div>
+</main>
+
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer__top">
+
+      <div class="footer__col">
+        <h3>BuildMart</h3>
+        <p>
+          Your trusted source for premium building materials and construction supplies since 1995.
+        </p>
+
+        <div class="footer__socials">
+          <a href="#">FB</a>
+          <a href="#">TW</a>
+          <a href="#">IG</a>
+          <a href="#">LN</a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li>About Us</li>
+          <li>Products</li>
+          <li>Delivery Info</li>
+          <li>Returns Policy</li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3>Customer Service</h3>
+        <ul>
+          <li>Contact Us</li>
+          <li>FAQs</li>
+          <li>Shipping & Tracking</li>
+          <li>Privacy Policy</li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3>Newsletter</h3>
+        <p>Subscribe for updates and exclusive deals.</p>
+
+        <div class="footer__email">
+          <input type="email" placeholder="Your email">
+          <button>→</button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__middle">
+
+      <div>
+        <p class="footer__label">Phone</p>
+        <p>1-800-BUILD-MART</p>
+      </div>
+
+      <div>
+        <p class="footer__label">Email</p>
+        <p>support@buildmart.com</p>
+      </div>
+
+      <div>
+        <p class="footer__label">Address</p>
+        <p>123 Construction Ave, Builder City, BC 12345</p>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2026 BuildMart. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+</html>

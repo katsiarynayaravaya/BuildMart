@@ -6,7 +6,7 @@
   <title>BuildMart</title>
   <link rel="stylesheet" href="../css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="../js/loadProducts.js"></script>
 </head>
 
 <body>
@@ -67,10 +67,9 @@
       <div class="toolbar__right">
         <label>Sort by:</label>
         <select>
-          <option>Price ↑</option>
-          <option>Price ↓</option>
-          <option>A-Z</option>
-          <option>Z-A</option>
+          <option>Name (A-Z)</option>
+          <option>Price (Low to High)</option>
+          <option>Price (High to Low)</option>          
         </select>
       </div>
     </div>
@@ -95,25 +94,11 @@
         </div>
       </div>
 
-      <button class="btn btn--outline">Clear Filters</button>
+      <button class="btn btn--outline">Clear All Filters</button>
 
     </div>
 
-    <div class="products">
-
-      <div class="card">
-        <img src="https://images.unsplash.com/photo-1673297821205-e0575bbc2ab7" alt="">
-        <h3>Exterior Paint Set</h3>
-        <div class="rating">⭐⭐⭐⭐☆ (3.5)</div>
-        <p class="price">$45.99</p>
-        <p class="category">Paint & Coatings</p>
-        <button class="btn">Add to Cart</button>
-      </div>
-
-
-      
-
-    </div>
+    <div class="products"></div>
 
   </div>
 </main>

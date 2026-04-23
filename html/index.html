@@ -51,6 +51,7 @@
 
 
 <main class="main">
+  <section></section>
   <div class="container">
 
     <div class="page-header">
@@ -60,8 +61,21 @@
 
     <div class="toolbar">
       <div class="toolbar__left">
-        <button class="btn btn--outline">Show Filters</button>
-        <span>Showing <b>6</b> products</span>
+        <button class="btn btn--outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="21" x2="14" y1="4" y2="4"></line>
+            <line x1="10" x2="3" y1="4" y2="4"></line>
+            <line x1="21" x2="12" y1="12" y2="12"></line>
+            <line x1="8" x2="3" y1="12" y2="12"></line>
+            <line x1="21" x2="16" y1="20" y2="20"></line>
+            <line x1="12" x2="3" y1="20" y2="20"></line>
+            <line x1="14" x2="14" y1="2" y2="6"></line>
+            <line x1="8" x2="8" y1="10" y2="14"></line>
+            <line x1="16" x2="16" y1="18" y2="22"></line>
+          </svg>
+          Show Filters
+        </button>
+        <span>Showing 6 products</span>
       </div>
 
       <div class="toolbar__right">
@@ -75,27 +89,44 @@
     </div>
 
     <div class="filters">
-
-      <div class="filter">
-        <h3>Minimum Rating</h3>
-        <div class="filter__options">
-          <button>3+ Stars</button>
-          <button>4+ Stars</button>
-          <button>5+ Stars</button>
+      
+      <div class="filter-block">
+        <h3 class="filter-title">Minimum Rating</h3>
+        <div class="rating-options">
+          <label class="rating-option">
+            <input type="checkbox" value="5">
+            <span class="custom-checkbox"></span>
+            <span class="rating-text">5+ Stars</span>
+          </label>
+          <label class="rating-option">
+            <input type="checkbox" value="4">
+            <span class="custom-checkbox"></span>
+            <span class="rating-text">4+ Stars</span>
+          </label>
+          <label class="rating-option">
+            <input type="checkbox" value="3">
+            <span class="custom-checkbox"></span>
+            <span class="rating-text">3+ Stars</span>
+          </label>
         </div>
       </div>
-
-      <div class="filter">
-        <h3>Price Range</h3>
-        <input type="range" min="0" max="400">
-        <div class="price-labels">
-          <span>$0</span>
-          <span>$400</span>
+    
+      <div class="filter-block">
+        <h3 class="filter-title">Price Range</h3>
+        <div class="price-range-wrapper">
+          <div class="slider-container">
+            <input type="range" min="0" max="400" value="0" class="price-slider min-slider" id="minSlider">
+            <input type="range" min="0" max="400" value="400" class="price-slider max-slider" id="maxSlider">
+            <div class="slider-track"></div>
+          </div>
+          <div class="price-values">
+            <span class="price-min">$0</span>
+            <span class="price-max">$400</span>
+          </div>
         </div>
       </div>
-
-      <button class="btn btn--outline">Clear All Filters</button>
-
+    
+      <button class="clear-filters-btn">Clear All Filters</button>
     </div>
 
     <div class="products"></div>

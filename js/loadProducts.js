@@ -60,7 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 
                 productsContainer.appendChild(card);
+                
             });
+            initCartButtons();
         })
         .catch(error => {
             console.error('Ошибка загрузки товаров:', error);

@@ -29,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 });
 
-
 function renderStars(rating) {
     let stars = '';
     const fullStars = Math.floor(rating);
@@ -54,9 +53,8 @@ function renderStars(rating) {
         </svg>`;
     }
     
-    return `<div style="display: flex; align-items: center; gap: 4px;">${stars}<span class="rating-value" style="margin-left: 4px; font-size: 14px; color: #4A5565;">(${rating.toFixed(1)})</span></div>`;
+    return `<div style="display: flex; align-items: center; gap: 4px;">${stars}<span class="rating-value" style="margin-left: 4px; font-size: 14px; color: #4A5565;">${rating.toFixed(1)}</span></div>`;
 }
-
 
 function renderProducts(products) {
     const container = document.querySelector('.products');
@@ -84,8 +82,6 @@ function renderProducts(products) {
     }
 
     products.forEach(product => {
-        const ratingValue = Number.isInteger(product.rating) ? product.rating.toFixed(1) : product.rating;
-        
         const card = document.createElement('div');
         card.className = 'card';
 
@@ -114,7 +110,6 @@ function renderProducts(products) {
     initCartButtons?.();
 }
 
-
 function sortProductsDirectly(productsArray, sortType) {
     if (!productsArray) return;
     
@@ -135,7 +130,6 @@ function sortProductsDirectly(productsArray, sortType) {
     window.currentProducts = sorted;
     renderProducts(sorted);
 }
-
 
 window.renderProducts = renderProducts;
 window.sortProductsDirectly = sortProductsDirectly;

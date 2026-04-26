@@ -24,8 +24,6 @@ function updateCartCount() {
         } else {
             cartCountElement.style.visibility = 'hidden';
         }
-    } else {
-        console.warn('Элемент .cart__count не найден');
     }
 }
 
@@ -46,6 +44,10 @@ function addToCart(productId, productName, productPrice, productImage) {
     
     saveCart();
     updateCartCount();
+    
+    if (typeof createToast === 'function') {
+        createToast(`Added ${productName} to cart`);
+    }
 }
 
 function removeFromCart(productId) {
@@ -66,7 +68,6 @@ function updateQuantity(productId, newQuantity) {
         }
     }
 }
-
 
 function clearCart() {
     cart = [];

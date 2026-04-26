@@ -64,13 +64,9 @@ function renderProducts(products) {
 
     if (!products || products.length === 0) {
         container.innerHTML = `
-            <div class="text-center py-12" style="grid-column: 1/-1;">
-                <p style="color:#6A7282;font-size:18px;">
-                    No products match your filters.
-                </p>
-                <button class="clear-filters-message-btn" style="margin-top: 16px; color: #F54900; background: none; border: none; cursor: pointer; font-size: 16px;">
-                    Clear filters
-                </button>
+            <div class="no-products-message" style="grid-column: 1 / 2;">
+                <p>No products match your filters.</p>
+                <button class="clear-filters-message-btn">Clear filters</button>
             </div>
         `;
 
@@ -82,6 +78,8 @@ function renderProducts(products) {
     }
 
     products.forEach(product => {
+        const ratingValue = Number.isInteger(product.rating) ? product.rating.toFixed(1) : product.rating;
+        
         const card = document.createElement('div');
         card.className = 'card';
 

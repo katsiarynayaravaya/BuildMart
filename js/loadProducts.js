@@ -90,8 +90,8 @@ function renderProducts(products) {
         card.className = 'card';
 
         card.innerHTML = `
-            <a href="#"><img src="${product.image}" alt="${product.name}"></a>
-            <a href="#">${product.name}</a>
+            <a href="product.html?id=${product.id}"><img src="${product.image}" alt="${product.name}"></a>
+            <a href="product.html?id=${product.id}">${product.name}</a>
             <div class="rating" style="display: flex; align-items: center; margin: 8px 16px 0 16px;">
                 ${renderStars(product.rating)}
             </div>

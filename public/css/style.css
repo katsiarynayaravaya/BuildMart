@@ -1,4 +1,4 @@
-* {
+ * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -13,17 +13,15 @@ html, body {
 body {
     font-family: 'Inter', sans-serif;
     background: #FFFFFF;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    overflow-y: auto;
 }
 
 main.main {
-    flex: 1 0 auto;
     padding-top: 100px;
     padding-bottom: 30px;
     transition: padding-top 0.3s ease;
 }
+
 
 body.menu-open main.main {
     padding-top: calc(100px + var(--menu-height, 200px));
@@ -106,6 +104,7 @@ body.menu-open main.main {
 .nav a:hover{
   color:#F54900;
 }
+
 
 .mobile-search-icon-btn {
     display: none;
@@ -282,8 +281,7 @@ body.menu-open main.main {
   background: #101828;
   width: 100%;
   padding: 48px 20px 32px 20px;
-  margin-top: 0;
-  flex-shrink: 0;
+  margin-top: 0; 
 }
 
 .footer__top {
@@ -818,12 +816,14 @@ body.menu-open main.main {
   position: absolute;
   width: 100%;
   height: 16px;
+  -webkit-appearance: none;
   background: transparent;
   pointer-events: none;
   z-index: 2;
 }
 
 .price-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
   width: 16px;
   height: 16px;
   background: white;
@@ -958,7 +958,6 @@ body.menu-open main.main {
 
 
 
-
 @media (max-width: 1024px) {
     .products {
         grid-template-columns: repeat(2, 1fr);
@@ -1000,6 +999,7 @@ body.menu-open main.main {
     }
 }
 
+
 @media (max-width: 827px) {
     .rating-options {
         flex-wrap: wrap;
@@ -1012,11 +1012,13 @@ body.menu-open main.main {
 }
 
 @media (max-width: 767px) {
+
     .toolbar {
         flex-direction: column;
         align-items: flex-start;
         gap: 12px;
     }
+
 
     .toolbar__right {
         display: flex;
@@ -1037,10 +1039,12 @@ body.menu-open main.main {
         max-width: 180px;
     }
 
+
     .filters.visible {
         flex-direction: column;
         gap: 24px;
     }
+
 
     .rating-options {
         display: flex;
@@ -1052,6 +1056,7 @@ body.menu-open main.main {
     .rating-option {
         width: auto !important;
     }
+
 
     .price-range-wrapper {
         width: 100%;
@@ -1068,6 +1073,7 @@ body.menu-open main.main {
         margin-left: 0;
     }
 }
+
 
 @media (max-width: 768px) {
     .nav {
@@ -1106,6 +1112,7 @@ body.menu-open main.main {
     .burger-menu {
         order: 3;
     }
+
 
     .footer {
         padding: 48px 20px 32px 20px;
@@ -1163,6 +1170,7 @@ body.menu-open main.main {
     }
 }
 
+
 @media (max-width: 320px) {
     .btn--outline {
         width: auto;
@@ -1204,6 +1212,7 @@ body.menu-open main.main {
         flex-direction: column;
     }
     
+
     .footer {
         padding: 40px 12px 24px 12px;
     }
@@ -1212,6 +1221,7 @@ body.menu-open main.main {
         padding-left: 0;
     }
 }
+
 
 @media (max-width: 276px) {
     .toolbar__right {
@@ -1227,6 +1237,7 @@ body.menu-open main.main {
     }
 }
 
+
 @media (max-width: 249px) {
     .rating-options {
         flex-direction: column;
@@ -1234,6 +1245,7 @@ body.menu-open main.main {
         gap: 12px;
     }
 }
+
 
 @media (max-width: 480px) {
     .products {
@@ -1262,6 +1274,7 @@ body.menu-open main.main {
         font-size: 14px;
     }
     
+  
     .footer {
         padding: 48px 16px 32px 16px;
     }

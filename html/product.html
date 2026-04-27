@@ -19,28 +19,32 @@
 
 <header class="header">
   <div class="container header__inner">
+
     <div class="logo">
       <a href="..\html\index.html">
         <div class="logo__icon">BM</div>
         <span class="logo__text">BuildMart</span>
       </a>
     </div>
+
     <nav class="nav">
       <a href="..\html\index.html">Products</a>
       <a href="#">Categories</a>
       <a href="#">Deals</a>
       <a href="#">About</a>
     </nav>
+
     <div class="search-wrapper">
-      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="11" cy="11" r="8"></circle>
         <path d="m21 21-4.3-4.3"></path>
       </svg>
       <input class="search" type="text" placeholder="Search products...">
     </div>
+
     <div class="cart">
       <a href="..\html\card.html">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="8" cy="21" r="1"></circle>
           <circle cx="19" cy="21" r="1"></circle>
           <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
@@ -48,6 +52,37 @@
         <span class="cart__count">0</span>
       </a>
     </div>
+
+    
+    <button class="mobile-search-icon-btn" id="mobileSearchBtn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.3-4.3"></path>
+      </svg>
+    </button>
+
+    <button class="burger-menu" id="burgerMenu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="12" y2="12"></line>
+        <line x1="4" x2="20" y1="6" y2="6"></line>
+        <line x1="4" x2="20" y1="18" y2="18"></line>
+      </svg>
+    </button>
+    
+    <div class="mobile-nav" id="mobileNav">
+      <div class="mobile-search-wrapper">
+        <svg class="mobile-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.3-4.3"></path>
+        </svg>
+        <input type="text" class="mobile-search" placeholder="Search products...">
+      </div>
+      <a href="..\html\index.html">Products</a>
+      <a href="#">Categories</a>
+      <a href="#">Deals</a>
+      <a href="#">About</a>
+    </div>
+
   </div>
 </header>
 
@@ -236,5 +271,64 @@
   </div>
 </footer>
 <div id="toast-container"></div>
+
+
+<script>
+    const burgerBtn = document.getElementById('burgerMenu');
+    const mobileNav = document.getElementById('mobileNav');
+    const mobileSearchBtn = document.getElementById('mobileSearchBtn');
+    const desktopSearch = document.querySelector('.search');
+    const mobileSearch = document.querySelector('.mobile-search');
+    const body = document.body;
+    
+    function updateMainPadding() {
+        if (mobileNav && mobileNav.classList.contains('active')) {
+            const navHeight = mobileNav.offsetHeight;
+            body.style.setProperty('--menu-height', navHeight + 'px');
+            body.classList.add('menu-open');
+        } else {
+            body.classList.remove('menu-open');
+            body.style.removeProperty('--menu-height');
+        }
+    }
+    
+    if (burgerBtn && mobileNav) {
+        burgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            mobileNav.classList.toggle('active');
+            updateMainPadding();
+        });
+        
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                updateMainPadding();
+            });
+        });
+    }
+    
+    if (desktopSearch && mobileSearch) {
+        desktopSearch.addEventListener('input', (e) => {
+            mobileSearch.value = e.target.value;
+        });
+        
+        mobileSearch.addEventListener('input', (e) => {
+            desktopSearch.value = e.target.value;
+        });
+    }
+    
+    document.addEventListener('click', (e) => {
+        if (mobileNav && mobileNav.classList.contains('active')) {
+            if (!mobileNav.contains(e.target) && !burgerBtn?.contains(e.target)) {
+                mobileNav.classList.remove('active');
+                updateMainPadding();
+            }
+        }
+    });
+    
+    window.addEventListener('resize', () => {
+        updateMainPadding();
+    });
+</script>
 </body>
 </html>

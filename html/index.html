@@ -76,7 +76,7 @@
         </svg>
         <input type="text" class="mobile-search" placeholder="Search products...">
       </div>
-      <a href="index.html">Products</a>
+      <a href="..\html\index.html">Products</a>
       <a href="#">Categories</a>
       <a href="#">Deals</a>
       <a href="#">About</a>
@@ -283,7 +283,6 @@
     const mobileSearch = document.querySelector('.mobile-search');
     const body = document.body;
     
-    // Функция обновления отступа main
     function updateMainPadding() {
         if (mobileNav && mobileNav.classList.contains('active')) {
             const navHeight = mobileNav.offsetHeight;
@@ -295,7 +294,6 @@
         }
     }
     
-    // Бургер меню
     if (burgerBtn && mobileNav) {
         burgerBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -311,7 +309,6 @@
         });
     }
     
-    // Синхронизация поиска
     if (desktopSearch && mobileSearch) {
         desktopSearch.addEventListener('input', (e) => {
             mobileSearch.value = e.target.value;
@@ -322,10 +319,6 @@
         });
     }
     
-    // Мобильная иконка поиска - только цвет меняется, без функционала
-    // (убраны все действия)
-    
-    // Закрытие меню при клике вне его
     document.addEventListener('click', (e) => {
         if (mobileNav && mobileNav.classList.contains('active')) {
             if (!mobileNav.contains(e.target) && !burgerBtn?.contains(e.target)) {
@@ -335,7 +328,6 @@
         }
     });
     
-    // Обновление отступа при ресайзе
     window.addEventListener('resize', () => {
         updateMainPadding();
     });

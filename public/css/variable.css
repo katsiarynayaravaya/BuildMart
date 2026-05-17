@@ -1,0 +1,17 @@
+:root{
+
+    --color_breadcrumb_a: #4A5565;
+    --color_breadcrumb_a_hover: #F54900;
+    --color_breadcrumb_span_last-child: #101828;
+    --color_text: #0A0A0A;
+    --color_label: #6B7280;
+    --background_color: #F3F4F6;
+    --color_hover_back: white;
+    --second_bckg: #F9FAFB;
+    --bckg_hover_color: #FEF2ED;
+    --bckg_hover_color_cart:#E03E00;
+    --border_color:#D1D5DC;
+    --price_unit_color: #6A7282;
+    --nav_btn_back: rgba(255, 255, 255, 0.9);
+    --thumbnail_border_color: #E5E7EB;
+}

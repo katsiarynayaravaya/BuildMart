@@ -41,7 +41,7 @@ function renderCartPage() {
             <div class="empty-cart-container">
                 <h1>Your Cart is Empty</h1>
                 <p>Start shopping to add items to your cart</p>
-                <a href="index.html" class="browse-products-btn">
+                <a href="/index.html" class="browse-products-btn">
                     Browse Products
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14"></path>
@@ -107,7 +107,7 @@ function renderCartPage() {
                                         <path d="m12 5 7 7-7 7"/>
                                     </svg>
                                 </button>
-                                <a href="index.html" class="continue-shopping-btn">Continue Shopping</a>
+                                <a href="/index.html" class="continue-shopping-btn">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="shipping-info">

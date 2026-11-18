@@ -4,7 +4,7 @@ let currentProduct = null;
 
 function getProductIdFromUrl() {
   const urlParams = new URLSearchParams(window.location.search);
-  return parseInt(urlParams.get('id'));
+  return urlParams.get('id');
 }
 
 function renderStars(rating) {
@@ -48,125 +48,6 @@ function renderSmallStars(rating) {
   
   return stars;
 }
-
-function getSpecifications(productId) {
-  const specs = {
-    1: [
-      { label: "Volume", value: "5 gallons total" },
-      { label: "Type", value: "100% Acrylic Latex" },
-      { label: "Coverage", value: "400 sq ft per gallon" },
-      { label: "Finish", value: "Satin" },
-      { label: "Dry Time", value: "2-4 hours" },
-      { label: "Colors", value: "Assorted neutral tones" }
-    ],
-    2: [
-      { label: "Dimensions", value: "4' x 8'" },
-      { label: "Thickness", value: "3/4 inch" },
-      { label: "Grade", value: "CDX" },
-      { label: "Plies", value: "7-ply construction" },
-      { label: "Exposure", value: "Exterior grade" },
-      { label: "Veneer", value: "Softwood" }
-    ],
-    3: [
-      { label: "Weight", value: "50 lbs per bag" },
-      { label: "Type", value: "Portland Cement Type I/II" },
-      { label: "Compressive Strength", value: "3500 PSI at 28 days" },
-      { label: "Setting Time", value: "2-4 hours initial set" },
-      { label: "Coverage", value: "Approximately 0.45 cubic feet" },
-      { label: "Storage Life", value: "6 months in sealed bag" }
-    ],
-    4: [
-      { label: "Dimensions", value: "2\" x 6\" x 8'" },
-      { label: "Wood Type", value: "Douglas Fir" },
-      { label: "Grade", value: "Premium Select" },
-      { label: "Moisture Content", value: "15% kiln-dried" },
-      { label: "Treatment", value: "Pressure-treated option available" },
-      { label: "Quantity", value: "Sold individually" }
-    ],
-    5: [
-      { label: "Dimensions", value: "8\" x 4\" x 2.25\"" },
-      { label: "Material", value: "Fire-hardened clay" },
-      { label: "Compressive Strength", value: "3000+ PSI" },
-      { label: "Water Absorption", value: "Less than 8%" },
-      { label: "Color", value: "Classic red" },
-      { label: "Weight", value: "4.5 lbs per brick" }
-    ],
-    6: [
-      { label: "Length", value: "20 feet" },
-      { label: "Profile", value: "W10x49" },
-      { label: "Material", value: "ASTM A992 Grade 50 Steel" },
-      { label: "Weight", value: "980 lbs" },
-      { label: "Yield Strength", value: "50 ksi" },
-      { label: "Finish", value: "Mill finish" }
-    ]
-  };
-  return specs[productId] || [
-    { label: "Category", value: "Building Materials" },
-    { label: "Quality", value: "Premium Grade" },
-    { label: "Warranty", value: "30 days" }
-  ];
-}
-
-function getDescription(productId) {
-  const descriptions = {
-    1: "Professional-grade exterior paint set designed to withstand harsh weather conditions. This premium paint offers excellent coverage, durability, and color retention. Perfect for residential and commercial exterior surfaces.",
-    2: "Versatile construction-grade plywood sheets suitable for a wide range of applications. These sheets are engineered for strength and dimensional stability, perfect for subfloors, roofing, walls, and general construction.",
-    3: "High-quality Portland cement bags designed for heavy-duty construction projects. Our premium cement offers exceptional strength, durability, and workability. Ideal for foundations, structural work, and general concrete applications. Each bag contains precisely measured and tested cement that meets international quality standards.",
-    4: "Premium kiln-dried lumber planks perfect for all your woodworking and construction needs. These high-grade wooden planks are carefully selected for strength and appearance. Suitable for framing, decking, furniture making, and various carpentry projects.",
-    5: "Traditional red clay bricks manufactured to the highest standards. These durable bricks are perfect for walls, patios, pathways, and architectural features. Fire-hardened for exceptional strength and weather resistance.",
-    6: "Heavy-duty structural steel I-beams engineered for maximum load-bearing capacity. These professional-grade beams are essential for large construction projects, building frames, and structural support applications."
-  };
-  return descriptions[productId] || "Professional-grade building material designed for durability and performance.";
-}
-
-async function loadProduct() {
-  const productId = getProductIdFromUrl();
-  
-  if (!productId) {
-    showError();
-    return;
-  }
-  
-  try {
-    const response = await fetch('../data/products.json');
-    const products = await response.json();
-    const product = products.find(p => p.id === productId);
-    
-    if (!product) throw new Error('Product not found');
-    
-    currentProduct = product;
-    productImages = [product.image, product.image, product.image];
-    
-    document.getElementById('product-breadcrumb').textContent = product.name;
-    document.getElementById('product-title').textContent = product.name;
-    document.getElementById('main-image').src = product.image;
-    document.getElementById('product-stars').innerHTML = renderStars(product.rating);
-    document.getElementById('product-rating-value').textContent = `(${product.rating.toFixed(1)})`;
-    document.getElementById('product-price').textContent = `$${product.price.toFixed(2)}`;
-    document.getElementById('product-description').textContent = getDescription(product.id);
-    
-    const specs = getSpecifications(product.id);
-    const specGrid = document.getElementById('spec-grid');
-    if (specGrid) {
-      specGrid.innerHTML = specs.map(spec => `
-        <div class="spec-item">
-          <span class="spec-label">${spec.label}</span>
-          <span class="spec-value">${spec.value}</span>
-        </div>
-      `).join('');
-    }
-    
-    initGallery();
-    initQuantity();
-    initCart();
-    initSpecAccordion();
-    loadRelatedProducts(product.category, product.id);
-    
-  } catch (error) {
-    console.error('Error:', error);
-  }
-}
-
 
 function initGallery() {
   const thumbnailsContainer = document.getElementById('thumbnails');
@@ -216,26 +97,6 @@ function initQuantity() {
   });
 }
 
-function initCart() {
-  const addBtn = document.getElementById('addToCartBtn');
-  const buyBtn = document.getElementById('buyNowBtn');
-  const quantityInput = document.getElementById('quantity');
-  
-  addBtn?.addEventListener('click', () => {
-    const qty = parseInt(quantityInput.value);
-    for (let i = 0; i < qty; i++) {
-      addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
-    }
-  });
-  
-  buyBtn?.addEventListener('click', () => {
-    const qty = parseInt(quantityInput.value);
-    for (let i = 0; i < qty; i++) {
-      addToCart(currentProduct.id, currentProduct.name, currentProduct.price, currentProduct.image);
-    }
-    window.location.href = 'card.html';
-  });
-}
 
 function initSpecAccordion() {
   const header = document.getElementById('specHeader');
@@ -252,41 +113,81 @@ function initSpecAccordion() {
   }
 }
 
-async function loadRelatedProducts(category, currentId) {
+async function loadProduct() {
+  const productId = getProductIdFromUrl();
+  if (!productId) return;
+  
   try {
-    const response = await fetch('../data/products.json');
-    const products = await response.json();
-    const related = products.filter(p => p.category === category && p.id !== currentId).slice(0, 4);
+    const data = await apiRequest('/products?limit=100');
+    const products = data.items || [];
+    const product = products.find(p => p.id === productId);
     
-    const grid = document.getElementById('related-grid');
-    if (!grid) return;
+    if (!product) throw new Error('Product not found');
     
-    if (related.length === 0) {
-      grid.innerHTML = '';
-      return;
-    }
+    currentProduct = product;
+    productImages = (product.images && product.images.length > 0) 
+      ? product.images 
+      : ['https://placeholder.com'];
     
-    grid.innerHTML = related.map(p => `
-      <a href="product.html?id=${p.id}" class="related-card">
-        <div class="related-card-img">
-          <img src="${p.image}" alt="${p.name}">
-        </div>
+    document.getElementById('product-breadcrumb').textContent = product.title;
+    document.getElementById('product-title').textContent = product.title;
+    document.getElementById('main-image').src = productImages[0];
+    document.getElementById('product-stars').innerHTML = renderStars(Number(product.rating));
+    document.getElementById('product-rating-value').textContent = `(${Number(product.rating).toFixed(1)})`;
+    document.getElementById('product-price').textContent = `$${Number(product.price).toFixed(2)}`;
+    document.getElementById('product-description').textContent = product.description;
+    
+    initGallery();
+    initQuantity();
+    initCart();
+    initSpecAccordion();
+    loadRelatedProducts(products, product.id);
+    
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
+
+function initCart() {
+  const addBtn = document.getElementById('addToCartBtn');
+  const buyBtn = document.getElementById('buyNowBtn');
+  const quantityInput = document.getElementById('quantity');
+  
+  addBtn?.addEventListener('click', async () => {
+    const qty = parseInt(quantityInput.value) || 1;
+    await addToCart(currentProduct.id, currentProduct.title, qty);
+  });
+  
+  buyBtn?.addEventListener('click', async () => {
+    const qty = parseInt(quantityInput.value) || 1;
+    await addToCart(currentProduct.id, currentProduct.title, qty);
+    window.location.href = '/html/card.html';
+  });
+}
+
+async function loadRelatedProducts(allProducts, currentId) {
+  const related = allProducts.filter(p => p.id !== currentId).slice(0, 4);
+  const grid = document.getElementById('related-grid');
+  if (!grid) return;
+  
+  grid.innerHTML = related.map(p => {
+    const img = (p.images && p.images.length > 0) ? p.images[0] : 'https://placeholder.com';
+    return `
+      <a href="/html/product.html?id=${p.id}" class="related-card">
+        <div class="related-card-img"><img src="${img}" alt="${p.title}"></div>
         <div class="related-card-content">
-          <div class="related-card-title">${p.name}</div>
+          <div class="related-card-title">${p.title}</div>
           <div class="related-card-rating">
-            <div class="stars">${renderSmallStars(p.rating)}</div>
-            <span class="related-card-rating-value">(${p.rating.toFixed(1)})</span>
+            <div class="stars">${renderSmallStars(Number(p.rating))}</div>
+            <span class="related-card-rating-value">(${Number(p.rating).toFixed(1)})</span>
           </div>
-          <div class="related-card-price">$${p.price.toFixed(2)}</div>
+          <div class="related-card-price">$${Number(p.price).toFixed(2)}</div>
         </div>
       </a>
-    `).join('');
-  } catch (error) {
-    console.error('Error loading related:', error);
-  }
+    `;
+  }).join('');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   loadProduct();
-  if (typeof loadCart === 'function') loadCart();
 });
